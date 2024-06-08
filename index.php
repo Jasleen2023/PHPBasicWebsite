@@ -1,86 +1,26 @@
-<?php
-/**
- * Front controller for setup script
- */
+<!-- /index.php -->
+ <?php include 'includes/header.php';?>
+ <main>
+    <h1> Welcome to my Website</h1>
+    <P> This is the Homepage
+    1.High-Quality Images: Jewellery is a visually appealing product, so high-resolution images showcasing the details of each piece are essential.
 
-declare(strict_types=1);
+2. Product Descriptions: Detailed descriptions including materials used, size, weight, and any other relevant information about each jewelry piece.
 
-use PhpMyAdmin\Controllers\Setup\ConfigController;
-use PhpMyAdmin\Controllers\Setup\FormController;
-use PhpMyAdmin\Controllers\Setup\HomeController;
-use PhpMyAdmin\Controllers\Setup\ServersController;
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Header;
-use PhpMyAdmin\Template;
-use PhpMyAdmin\Url;
+3. Clear Navigation: Easy-to-use navigation that categorizes jewelry by type (rings, necklaces, bracelets, etc.) and allows users to browse effortlessly.
 
-if (! defined('ROOT_PATH')) {
-    // phpcs:disable PSR1.Files.SideEffects
-    define('ROOT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
-    // phpcs:enable
-}
+4. Secure Shopping Experience: Implement secure payment gateways and SSL certificates to provide a safe shopping experience for customers.
 
-/** @psalm-suppress InvalidGlobal */
-global $cfg;
+5. Responsive Design: Ensure your website is mobile-friendly to cater to users browsing on smartphones and tablets.
 
-// phpcs:disable PSR1.Files.SideEffects
-define('PHPMYADMIN', true);
-// phpcs:enable
 
-require ROOT_PATH . 'setup/lib/common.inc.php';
 
-if (@file_exists(CONFIG_FILE) && ! $cfg['DBG']['demo']) {
-    Core::fatalError(__('Configuration already exists, setup is disabled!'));
-}
+    </P> 
+    <section id="about me">
+    <h2>About me</h2>  
+    <img src="css/R (6).jpeg" alt="Jewellery" height="400" width="500">
 
-$page = 'index';
-if (isset($_GET['page']) && in_array($_GET['page'], ['form', 'config', 'servers'], true)) {
-    $page = $_GET['page'];
-}
-
-Core::noCacheHeader();
-
-// Sent security-related headers
-(new Header())->sendHttpHeaders();
-
-if ($page === 'form') {
-    echo (new FormController($GLOBALS['ConfigFile'], new Template()))([
-        'formset' => $_GET['formset'] ?? null,
-    ]);
-
-    return;
-}
-
-if ($page === 'config') {
-    echo (new ConfigController($GLOBALS['ConfigFile'], new Template()))([
-        'formset' => $_GET['formset'] ?? null,
-        'eol' => $_GET['eol'] ?? null,
-    ]);
-
-    return;
-}
-
-if ($page === 'servers') {
-    $controller = new ServersController($GLOBALS['ConfigFile'], new Template());
-    if (isset($_GET['mode']) && $_GET['mode'] === 'remove' && ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-        $controller->destroy([
-            'id' => $_GET['id'] ?? null,
-        ]);
-        header('Location: index.php' . Url::getCommonRaw());
-
-        return;
-    }
-
-    echo $controller->index([
-        'formset' => $_GET['formset'] ?? null,
-        'mode' => $_GET['mode'] ?? null,
-        'id' => $_GET['id'] ?? null,
-    ]);
-
-    return;
-}
-
-echo (new HomeController($GLOBALS['ConfigFile'], new Template()))([
-    'formset' => $_GET['formset'] ?? null,
-    'version_check' => $_GET['version_check'] ?? null,
-]);
+    <p>Hii, My name is Jasleen Kaur. My hobbies are exploring new things and check my website hope you all will like it</p>
+    </section>
+ </main>
+ <?php include'includes/footer.php';?>
