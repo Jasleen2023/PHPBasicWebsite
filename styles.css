@@ -6,8 +6,8 @@ body{
     padding: 0;
 }
 header{
-    background-color: rgb(248, 186, 110);
-    color: rgb(128, 233, 198);
+    background-color: rgba(247, 161, 56, 0.336);
+    color: rgb(10, 238, 162);
     padding: 10px 0;
 }
 nav ul {
@@ -22,7 +22,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ee86dd;
+    color: #f14fd6;
     text-decoration: none;
 }
 
@@ -32,8 +32,8 @@ nav ul li.active a {
 }
 
 footer {
-    background-color: #db9898;
-    color: #def381;
+    background-color: #e6f057;
+    color: #f34e8d;
     text-align: center;
     padding: 10px 0;
     position: static;
